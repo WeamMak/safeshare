@@ -1,0 +1,17 @@
+# SafeShare — High-Level Development Roadmap
+
+Develop SafeShare in seven stages, with a basic sender-to-receiver prototype working by Stage 3. Controlled video input lets us test the complete pipeline before tackling desktop capture.
+
+| Stage and objective | Main implementation tasks | Expected working outcome | Main skills demonstrated |
+|---|---|---|---|
+| **1. Establish scope and a runnable foundation** | Examine existing solutions; choose initial sensitive-data categories; establish a minimal C++20 build; prepare synthetic examples with labeled sensitive regions. | A small program that loads and displays test frames, with clear initial success criteria. | C++20, Linux development, problem scoping, test design. |
+| **2. Build baseline detection and redaction** | Combine OCR with simple detection rules; apply opaque masks; define how processing failures block output; measure initial misses and false positives. | A local preview that redacts supported examples and withholds frames when processing fails. | Computer vision, OCR, C++ interfaces, correctness testing. |
+| **3. Deliver the first end-to-end stream** | Connect controlled video input, detection, redaction, and WebRTC transmission; ensure only processed output reaches encoding and transmission; inspect received video. | Another participant receives sanitized test video, with basic latency and leak measurements. | Networking, WebRTC, integration, asynchronous communication. |
+| **4. Integrate live screen capture** | Decide the capture platform and Windows/WSL boundary; connect desktop frames; handle resolution changes and capture interruptions. | A live screen-sharing prototype that redacts the supported sensitive-data categories. | Platform integration, frame formats, resource ownership, runtime debugging. |
+| **5. Strengthen runtime reliability** | Introduce measured concurrency, bounded queues, and reusable buffers; define overload behavior; test processing delays, failures, disconnects, and reconnections. | A pipeline that keeps memory bounded and blocks unprocessed frames during tested failure scenarios. | Modern C++, multithreading, synchronization, memory management, fault testing. |
+| **6. Improve detection with justified AI** | Analyze baseline weaknesses; prepare training and held-out evaluation data; train or fine-tune a PyTorch model where useful; integrate inference and compare against the baseline. | An evaluated detector whose accuracy and runtime trade-offs are understood. | Python, PyTorch, dataset preparation, model evaluation, inference integration. |
+| **7. Measure and optimize the complete system** | Profile bottlenecks; compare improvements against reproducible baselines; measure recall, false positives, leaked frames at the receiver, throughput, dropped frames, memory, end-to-end latency, and p95 added latency. | A demonstrable application with credible results, documented limitations, and evidence-backed CV claims. | Profiling, performance engineering, reproducible benchmarking, technical communication. |
+
+Privacy checks begin with the first streaming version. Evaluation should distinguish **detector misses** from **pipeline failures that allow unprocessed frames through**.
+
+Work through one stage at a time. Discuss technical details immediately before implementing each stage, with the user writing the code and explicitly requesting progression to the next stage.

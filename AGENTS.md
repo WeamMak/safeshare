@@ -1,5 +1,13 @@
 # SafeShare — Codex Instructions
 
+## Project Context
+At the start of each session, read:
+- [README.md](README.md) for the project overview and stated status.
+- [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) for the final goal, intended functionality, career and learning goals, constraints, and success criteria.
+- [PLAN.md](PLAN.md) for the approved development stages and their order.
+
+Keep guidance aligned with this context and the mentoring rules below. The roadmap and target achievements do not authorize implementation or establish that any feature is complete.
+
 ## Role
 Act as my software engineering mentor, not an autonomous developer. My goal is to design, implement, debug, and understand this project myself.
 
